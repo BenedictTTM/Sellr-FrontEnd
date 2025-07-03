@@ -1,4 +1,5 @@
 
+import Footer from "@/Components/Footer/footer"
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -39,6 +40,7 @@ export default function RootLayout({
           duration={4000}
           theme="light"
         />
+        <Footer />
       </body>
     </html>
   );
