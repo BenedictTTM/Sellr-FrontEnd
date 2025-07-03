@@ -1,18 +1,18 @@
 import React from "react";
+import Image from "next/image";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
-const downloadPlatforms = [
+
+const appStores = [
   {
     id: "google-play",
-    name: "Google Play",
-    text: "GET IT ON",
-    icon: "/icons/google-play.svg", // Move to /public/icons for performance and control
+    src: "/app-store.svg",
+    alt: "Google Play",
     url: "https://play.google.com/store/apps"
   },
   {
     id: "app-store",
-    name: "App Store",
-    text: "Download on the",
-    icon: "/icons/app-store.png", // Local path
+    src: "/google-play.svg",
+    alt: "App Store",
     url: "https://www.apple.com/app-store/"
   }
 ];
@@ -23,27 +23,31 @@ export default function DownloadAppSection() {
       <h3 className="text-lg font-semibold mb-4">Download App</h3>
       <p className="text-xs text-gray-400 mb-3">Save $3 with App New User Only</p>
 
-      {/* Fake QR */}
-      <div className="flex gap-2 mb-4">
-      
+      {/* QR + Store Buttons Layout */}
+      <div className="flex items-center gap-4 mb-4">
+        {/* QR Code */}
+        <Image
+          src="/qrCode.svg" // Replace with your QR image
+          alt="QR Code"
+          width={100}
+          height={100}
+        />
 
-        {/* App store buttons */}
-        <div className="flex flex-col gap-1">
-
-             {downloadPlatforms.map((store) => (
-  <a key={store.id} href={store.url} className="bg-black border border-gray-600 rounded px-2 py-1 flex items-center gap-2 hover:opacity-90">
-    <img src={store.icon} alt={store.name} className="w-6 h-6 object-contain" />
-    <div className="text-xs leading-tight">
-      <div className="text-gray-400">{store.text}</div>
-      <div className="font-semibold text-white">{store.name}</div>
-    </div>
-  </a>
-))}
-
-          </div>
-
-         
-    
+        {/* App Store Buttons */}
+        <div className="flex flex-col gap-2">
+          {appStores.map((store) => (
+            <a key={store.id} href={store.url} target="_blank" rel="noopener noreferrer">
+              <Image
+                src={store.src}
+                alt={store.alt}
+                width={140}
+                height={45}
+                className="hover:opacity-90 object-contain"
+                style={{ objectFit: 'contain' }}
+              />
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* Social icons */}

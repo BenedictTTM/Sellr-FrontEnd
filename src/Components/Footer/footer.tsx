@@ -9,14 +9,14 @@ import DownloadAppSection from "./downloadAppSection";
 export default function Footer() {
   const [email, setEmail] = useState("");
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Subscribing email:", email);
     setEmail("");
   };
 
   return (
-    <footer className="bg-gray-900 text-white py-12 px-6">
+    <footer className="bg-black text-white py-5 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <ExclusiveSection
@@ -29,9 +29,9 @@ export default function Footer() {
           <QuickLinkSection />
           <DownloadAppSection />
         </div>
-        <div className="border-t border-gray-800 mt-8 pt-6 text-center">
-          <p className="text-sm text-gray-500">
-            © Copyright Rimel 2022. All right reserved
+        <div className="mt-4  text-center">
+          <p className="text-sm text-gray-600">
+            © Copyright Sellr 2025. All right reserved
           </p>
         </div>
       </div>
