@@ -2,13 +2,16 @@
 import React from 'react'
 import SearchComponent from './searchComponent'
 import NavLinks from '../Navigation/navLinks' // Import your navLinks component
-import { Search, Heart, ShoppingCart } from 'lucide-react'
+import { PiPlug } from "react-icons/pi";
 
 const mainNavBar = () => {
  return (
     <nav className="flex items-center justify-between px-10 py-4 shadow-sm bg-white border-b border-gray-200">
       {/* Logo */}
-      <div className="text-2xl font-bold text-gray-700">Exclusive</div>
+      <div className="flex items-center text-2xl font-bold text-gray-700">
+  My Plug
+  <PiPlug className="text-2xl text-gray-700 ml-2" />
+</div>
 
       {/* Navigation Links */}
       <ul className="flex space-x-8 ">
