@@ -78,7 +78,7 @@ export default function SignUpPage() {
           <Image 
             src={CartImage} 
             alt="Cart Image" 
-            className="w-full h-screen object-cover" 
+            className="w-full h-screen object-cover py-10" 
           />
         </div>
 

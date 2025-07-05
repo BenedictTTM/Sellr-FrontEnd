@@ -2,7 +2,7 @@ import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface FormInputProps {
-  label: string;
+  label?: string;
   type?: string;
   placeholder: string;
   register: UseFormRegisterReturn;
@@ -22,12 +22,17 @@ export function FormInput({
       <input
         type={type}
         {...register}
-        className="w-full text-gray-500  py-2 border-0 border-gray-500 border-b bg-transparent focus:outline-none focus:border-gray-500 "
+        className="w-full text-gray-500 py-1 border-0 border-b border-gray-500 bg-transparent focus:outline-none focus:border-gray-500"
         placeholder={placeholder}
       />
-      {error && <p className="text-red-600 text-sm mt-1">{error}</p>}
+      <div className="min-h-[1rem]">
+        {error && (
+          <p className="text-red-600 text-xs transition-opacity duration-300 ease-in-out">
+            {error}
+          </p>
+        )}
+      </div>
       {children}
     </div>
   );
 }
-
