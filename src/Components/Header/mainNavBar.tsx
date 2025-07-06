@@ -9,7 +9,7 @@ const mainNavBar = () => {
     <nav className="flex items-center justify-between px-10 py-4 shadow-sm bg-white border-b border-gray-200">
       {/* Logo */}
       <div className="flex items-center text-2xl font-bold text-gray-700">
-  My Plug
+  <span className='text-red-500'>my </span> Plug
   <PiPlug className="text-2xl text-gray-700 ml-2" />
 </div>
 
