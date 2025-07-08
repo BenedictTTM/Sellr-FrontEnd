@@ -10,21 +10,35 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/products');
-        if (!response.ok) throw new Error('Failed to fetch products');
-        const data = await response.json();
-        setProducts(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Something went wrong');
-      } finally {
-        setLoading(false);
-      }
-    };
+useEffect(() => {
     fetchProducts();
   }, []);
+
+const fetchProducts = async () => {
+  try {
+    setLoading(true);
+    console.log('🔍 Fetching products from frontend...');
+    
+    const response = await fetch('/api/products');
+    console.log('📊 Frontend API response status:', response.status);
+    
+    const data = await response.json();
+    console.log('📦 Frontend API response data:', data);
+
+    // ✅ UPDATED DATA HANDLING
+    if (response.ok) {
+      console.log('✅ Products received:', data);
+      setProducts(Array.isArray(data) ? data : (data.data || []));
+    } else {
+      setError(data.message || 'Failed to fetch products');
+    }
+  } catch (err) {
+    console.error('💥 Frontend fetch error:', err);
+    setError('Failed to fetch products');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-50">
