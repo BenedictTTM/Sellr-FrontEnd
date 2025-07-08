@@ -1,65 +1,100 @@
-import React from 'react'
-import heroDarkBackground from '../../../public/heroDarkBackIphone.png';
-import Image from 'next/image';
-import { ChevronRight } from 'lucide-react';
+'use client';
 
-const hero = () => {
+import React, { useState, useEffect } from 'react';
+import CatergorySideBar from '../Categories/categorySidebar';
+
+interface HeroSlide {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  bgColor: string;
+  textColor: string;
+}
+
+const heroSlides: HeroSlide[] = [
+  {
+    title: "iPhone 14 Series",
+    subtitle: "Up to 10% off Voucher",
+    buttonText: "Shop Now",
+    bgColor: "bg-black",
+    textColor: "text-white"
+  },
+  {
+    title: "Gaming Collection",
+    subtitle: "Up to 25% off Gaming Gear",
+    buttonText: "Shop Now",
+    bgColor: "bg-blue-600",
+    textColor: "text-white"
+  },
+  {
+    title: "Electronics Sale",
+    subtitle: "Best Deals on Electronics",
+    buttonText: "Shop Now",
+    bgColor: "bg-purple-600",
+    textColor: "text-white"
+  }
+];
+
+export default function HeroSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="relative w-full h-[500px] bg-black overflow-hidden">
-      {/* Blue gradient border */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 p-1">
-        <div className="w-full h-full bg-black">
-          {/* Content Container */}
-          <div className="relative w-full h-full flex items-center">
-            {/* Left Content */}
-            <div className="flex-1 px-12 z-10">
-              {/* Apple Logo and Text */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
-                  <svg className="w-5 h-5 text-black" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+    <div className="flex h-80">
+      {/* Sidebar */}
+      <div className="w-64">
+        <CatergorySideBar />
+      </div>
+
+      {/* Hero Carousel */}
+      <div className="flex-1 relative overflow-hidden">
+        {heroSlides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 ${slide.bgColor} ${slide.textColor} transition-transform duration-500 ease-in-out flex items-center`}
+            style={{
+              transform: `translateX(${(index - currentSlide) * 100}%)`
+            }}
+          >
+            <div className="flex w-full max-w-6xl mx-auto px-8">
+              <div className="flex-1 flex flex-col justify-center">
+                <p className="text-sm mb-2 opacity-80">{slide.title}</p>
+                <h1 className="text-4xl font-bold mb-6">{slide.subtitle}</h1>
+                <button className="inline-flex items-center px-6 py-3 bg-transparent border border-current rounded hover:bg-white hover:text-black transition-colors w-fit">
+                  {slide.buttonText}
+                  <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </div>
-                <span className="text-white text-sm font-medium">iPhone 14 Series</span>
+                </button>
               </div>
-
-              {/* Main Heading */}
-              <h1 className="text-white text-5xl font-bold leading-tight mb-4">
-                Up to 10%<br />
-                off Voucher
-              </h1>
-
-              {/* Shop Now Button */}
-              <button className="flex items-center gap-2 text-white border-b border-white pb-1 hover:border-gray-300 transition-colors group">
-                <span className="text-lg">Shop Now</span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-
-            {/* Right Content - iPhone Image */}
-            <div className="flex-1 relative h-full">
-              <Image
-                src={heroDarkBackground}
-                alt="iPhone 14 Series"
-                fill
-                className="object-contain object-right"
-                priority
-              />
+              <div className="flex-1 flex items-center justify-center">
+                <div className="w-64 h-64 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center">
+                  <div className="text-6xl">📱</div>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* Pagination Dots */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2">
-            <div className="w-3 h-3 rounded-full bg-white"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-            <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-          </div>
+        ))}
+        
+        {/* Carousel Indicators */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-colors ${
+                index === currentSlide ? 'bg-white' : 'bg-white/50'
+              }`}
+            />
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
-
-export default hero
