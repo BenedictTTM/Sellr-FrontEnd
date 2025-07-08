@@ -9,6 +9,11 @@ export default function CreateProductPage() {
     price: '',
     category: '',
     discount: '',
+    condition: '',
+    tags: '',
+    locationLat: '',
+    locationLng: '',
+    stock: '',
   });
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -39,6 +44,20 @@ export default function CreateProductPage() {
       formData.append('price', form.price);
       formData.append('category', form.category);
       formData.append('discount', form.discount);
+      formData.append('condition', form.condition);
+      formData.append('locationLat', form.locationLat);
+      formData.append('locationLng', form.locationLng);
+      formData.append('stock', form.stock);
+    // Convert tags string to array and append each tag separately
+const rawTags = form.tags || "";
+
+const tagsArray = rawTags
+  .split(',')
+  .map(tag => tag.trim())
+  .filter((tag, index, self) => tag.length > 0 && self.indexOf(tag) === index); // removes empty and duplicate tags
+
+tagsArray.forEach(tag => formData.append('tags', tag));
+
 
       const token = localStorage.getItem('token');
       if (!token) {
@@ -78,6 +97,8 @@ export default function CreateProductPage() {
         <input type="number" name="price" placeholder="Price" value={form.price} onChange={handleChange} />
         <input type="text" name="category" placeholder="Category" value={form.category} onChange={handleChange} />
         <input type="number" name="discount" placeholder="Discount" value={form.discount} onChange={handleChange} />
+        <input type="text" name="condition" placeholder="Condition" value={form.condition} onChange={handleChange} />
+        <input type="text" name="tags" placeholder="Tags (comma separated)" value={form.tags} onChange={handleChange} />
         <input type="file" accept="image/*" onChange={handleImageChange} />
         <button type="submit" disabled={loading}>
           {loading ? 'Creating...' : 'Create Product'}
