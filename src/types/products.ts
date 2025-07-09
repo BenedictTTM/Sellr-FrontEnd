@@ -5,7 +5,8 @@ export interface BaseProduct {
   description?: string;
   imageUrl: string;
   category: string;
-  price: number;
+  originalPrice: number;
+  discountedPrice: number;
   stock: number;
   condition: string;
   tags: string[];
@@ -82,7 +83,9 @@ export interface ProductSearchResult {
   id: number;
   title: string;
   imageUrl: string;
-  price: number;
+  category: string;
+  discountedPrice: number;
+  originalPrice: number;
   condition: string;
   averageRating: number;
   totalReviews: number;
