@@ -26,7 +26,11 @@ export default function ProductCard({ product, showSale = false }: ProductCardPr
         {/* Image Section - Fixed Height */}
         <div className="aspect-square w-full overflow-hidden bg-gray-100 relative flex-shrink-0">
           <Image
-            src={product.imageUrl || placeholder.src}
+            src={
+    Array.isArray(product.imageUrl) && product.imageUrl.length > 0
+      ? product.imageUrl[0]
+      : placeholder.src
+  }
             alt={product.title}
             width={200}
             height={200}
@@ -48,7 +52,7 @@ export default function ProductCard({ product, showSale = false }: ProductCardPr
           {/* Price */}
           <div className="flex items-center gap-1 mb-1">
             <span className="text-red-500 font-semibold text-md">
-              ${product.price}
+              ${product.discountedPrice.toFixed(2)}
             </span>
           </div>
 

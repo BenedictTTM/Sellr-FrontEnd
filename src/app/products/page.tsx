@@ -49,6 +49,7 @@ const fetchProducts = async () => {
       <div className="px-8 py-8">
           <>
             <ProductsGrid products={products} />
+            
           </>
       </div>
     </div>
