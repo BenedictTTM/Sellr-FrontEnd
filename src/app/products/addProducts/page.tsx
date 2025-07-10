@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import ImageGrid from '../../../Components/ProductsComponents/imageGrid';
 import ProductFormFields from '../../../Components/ProductsComponents/productFromFields';
-import { AuthService } from '../../../lib/auth';
+import VerticalNavigation from '@/Components/Navigation/verticalProductNav';
 
 const MAX_IMAGES = 3;
 
@@ -149,9 +149,11 @@ export default function CreateProductPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-8">
-      <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold mb-6 text-center text-primary">Create Product</h1>
+    <>
+    <VerticalNavigation />
+    <div className="min-h-screen  flex items-center justify-center py-8">
+      <div className="w-full max-w-2xl  rounded-xl  p-8">
+        <h1 className="text-3xl font-medium mb-6 text-center text-primary">Create Product</h1>
         <form onSubmit={handleSubmit} className="space-y-5">
           <ImageGrid
             images={images}
@@ -172,5 +174,6 @@ export default function CreateProductPage() {
         {success && <div className="mt-4 text-green-600 text-center">Product created successfully!</div>}
       </div>
     </div>
+    </>
   );
 }

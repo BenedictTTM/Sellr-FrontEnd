@@ -10,7 +10,7 @@ const labelClass = "block mb-1 font-semibold text-gray-700";
 const inputClass = "input input-bordered w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition placeholder-gray-400";
 
 const ProductFormFields: React.FC<ProductFormFieldsProps> = ({ form, handleChange }) => (
-  <div className=" p-8 rounded-xl shadow-md max-w-2xl mx-auto space-y-5">
+  <div className=" p-8 rounded-xl  max-w-2xl mx-auto space-y-5">
     <div>
       <label className={labelClass} htmlFor="title">Title</label>
       <input

@@ -13,13 +13,12 @@ const ImageGrid: React.FC<ImageGridProps> = ({
   onAddImageClick,
   fileInputRef,
   onFileInputChange,
-  maxImages = 3, // Only 3 images for this layout
+  maxImages = 3,
 }) => (
   <div className="grid grid-cols-3 grid-rows-2 gap-4 mb-4">
     {/* Main Image (large, spans 2 cols and 2 rows) */}
     <div
-      className="relative flex flex-col items-center justify-center border-1 border-dashed border-orange-300 rounded-lg col-span-2 row-span-2 cursor-pointer bg-white hover:bg-orange-50 transition"
-      style={{ height: '304px' }}
+      className="relative flex flex-col items-center justify-center border border-dashed border-orange-300 rounded-lg col-span-2 row-span-2 cursor-pointer bg-white hover:bg-orange-50 transition h-[220px]"
       onClick={() => onAddImageClick(0)}
     >
       <span className="absolute top-2 left-2 bg-orange-500 text-white text-xs px-2 py-1 rounded z-10">
@@ -40,8 +39,7 @@ const ImageGrid: React.FC<ImageGridProps> = ({
     </div>
     {/* Small Image 1 (top right) */}
     <div
-      className="flex flex-col items-center justify-center border-1 border-dashed border-orange-300 rounded-lg cursor-pointer bg-white hover:bg-orange-50 transition"
-      style={{ height: '148px' }}
+      className="flex flex-col items-center justify-center border border-dashed border-orange-300 rounded-lg cursor-pointer bg-white hover:bg-orange-50 transition h-[100px]"
       onClick={() => onAddImageClick(1)}
     >
       {images[1] ? (
@@ -59,8 +57,7 @@ const ImageGrid: React.FC<ImageGridProps> = ({
     </div>
     {/* Small Image 2 (bottom right) */}
     <div
-      className="flex flex-col items-center justify-center border-1 border-dashed border-orange-300 rounded-lg cursor-pointer bg-white hover:bg-orange-50 transition"
-      style={{ height: '148px' }}
+      className="flex flex-col items-center justify-center border border-dashed border-orange-300 rounded-lg cursor-pointer bg-white hover:bg-orange-50 transition h-[100px]"
       onClick={() => onAddImageClick(2)}
     >
       {images[2] ? (
