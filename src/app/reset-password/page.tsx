@@ -1,8 +1,8 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-export default function ResetPasswordPage() {
+function ResetPasswordForm() {
   const search = useSearchParams();
   const token = search?.get('token') ?? '';
   const router = useRouter();
@@ -12,6 +12,7 @@ export default function ResetPasswordPage() {
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log('Token from URL:', token); // Debug log
     if (!token) setMessage('Invalid or missing token.');
   }, [token]);
 
@@ -55,5 +56,13 @@ export default function ResetPasswordPage() {
         {message && <p className="text-sm">{message}</p>}
       </form>
     </main>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordForm />
+    </Suspense>
   );
 }
