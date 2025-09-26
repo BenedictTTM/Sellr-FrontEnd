@@ -15,7 +15,7 @@ export default function QuantitySelector({
 }: QuantitySelectorProps) {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex items-center border rounded">
+      <div className="flex items-center border border-gray-300 rounded">
         <button 
           aria-label="decrease quantity" 
           onClick={onDecrease} 
